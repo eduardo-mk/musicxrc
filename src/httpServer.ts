@@ -9,8 +9,8 @@ app.get("/", function (req: express.Request, res: express.Response) {
    res.status(200).send({ msg: "Home page" })
 })
 app.use("/music", musicRouter)
-
-app.listen(process.env.PORT || 3000, function (error: ErrorEvent) {
+ 
+app.listen(process.env.PORT || 3001, function (error: ErrorEvent) {
    if (error) console.log(error)
    else {
       console.log("http-server-running")

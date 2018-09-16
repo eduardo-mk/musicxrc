@@ -25,8 +25,10 @@ router.get(
                   }
                }).on('data', (chunk) => {
                   data += chunk
-               }).on("end", function () {
+               }).on("end", function () { 
                   res.status(200).send(data)
+               }).on('error', (code)=>{
+                     res.status(400).send(code)
                })
 
 
@@ -42,6 +44,7 @@ router.get(
    '/track',
    function (req: express.Request, res: express.Response) {
       if (req.query) {
+            console.log('track')
          if (req.query.name && req.query.name.length < 50) {
             let track = musicUtils.cleanWhiteSpace(req.query.name)
             let uri = urls.itunes.musicTrack(track)
@@ -63,10 +66,10 @@ router.get(
                   res.status(200).send(data)
                })
          } else {
-            res.status(400).send({ msg: "Author name not valid" })
+            res.status(400).send({ msg: "Track name not valid" })
          }
       } else {
-         res.status(400).send({ msg: "Author name not valid" })
+         res.status(400).send({ msg: "Track name not valid" })
       }
    })
 
